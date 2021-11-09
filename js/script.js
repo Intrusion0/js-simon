@@ -19,28 +19,38 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
     --DONE  2.2 Creo un array vuoto fuori dal ciclo => userNum = [];
     --DONE  2.3 All'interno del ciclo creo una variabile in cui gli assegno il prompt => let x = prompt('.....');
     --DONE  2.4 Successivamente pusho il valore all'interno dell'array nuovo => userNum.push(x);
+    --DONE  2.5 Creo una condizione che controlla se il numero inserito dall'utente è presente nell'array dei numeri generati random => randomNum.includes(userNumEntered);
+        --DONE  2.6 Se c'è almeno un numero incluso, lo pusho in un nuovo array e lo mostro in pagina => resultNum.push(userNumEntered) -- contResult.innerHTML = resultNum;
 --DONE  3. Attivo la funzione tramite => setTimeout (namefunction, millisecondi);
-4. 
 
 */
 
 const contResult = document.getElementById('result');
 
 contResult.innerHTML += genRandNum(100);
-setTimeout(genPrompt, 30000);
+setTimeout(genPrompt, 3000);
 
-console.log(randomNum);
+console.log('Numeri random univoci: ', randomNum);
 
 // FUNZIONI
 
 // Prompt
 function genPrompt() {
+
     userNum = [];
+    resultNum = [];
+    contResult.innerHTML = '';
+
     for(let i = 1; i <= 5; i++) {
         let userNumEntered = parseInt(prompt(`Inserisci il numero: ${i}`))
         userNum.push(userNumEntered);
+        if ((randomNum.includes(userNumEntered)) && (resultNum.indexOf(userNumEntered) === -1)) { // Condizione doppia per far si che il nuovo array sia univoco e non abbia doppioni, per evitare che se l'utente inserisce 2 o più numeri uguali, in html e nel nuovo array ne appaia solo 1 e non venga ripetuto. 
+            resultNum.push(userNumEntered);
+            contResult.innerHTML = 'Hai indovinato ' + resultNum.length + ' numeri, e sono: ' + resultNum;
+        }
     }
-    console.log(userNum);
+    console.log("Numeri inseriti dall'utente: ", userNum);
+    console.log("Numeri indovinati: ", resultNum);
     return userNum;
 }
 
