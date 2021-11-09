@@ -14,15 +14,35 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
     --DONE  1.4 Creo una condizione all'interno del ciclo per controllare se il numero generato è univoco => utilizzando .indexOf === -1
         --DONE  1.4.1 Se il numero generato non è presente, quindi la condizione sarà true, il numero generato verrà pushato all'interno dell'array.
         --DONE  1.4.2 Se il numero generato è presente, la condizione sarà false e verrà effettuato un altro giro del ciclo while
+--DONE  2. Creo una funzione che farà apparire 5 prompt a schermo, uno dopo l'altro
+    --DONE  2.1 Creo un ciclo for che verrà eseguito 5 volte => for (let i = 0; i < 5; i++);
+    --DONE  2.2 Creo un array vuoto fuori dal ciclo => userNum = [];
+    --DONE  2.3 All'interno del ciclo creo una variabile in cui gli assegno il prompt => let x = prompt('.....');
+    --DONE  2.4 Successivamente pusho il valore all'interno dell'array nuovo => userNum.push(x);
+--DONE  3. Attivo la funzione tramite => setTimeout (namefunction, millisecondi);
+4. 
 
 */
 
 const contResult = document.getElementById('result');
 
 contResult.innerHTML += genRandNum(100);
+setTimeout(genPrompt, 30000);
+
 console.log(randomNum);
 
 // FUNZIONI
+
+// Prompt
+function genPrompt() {
+    userNum = [];
+    for(let i = 1; i <= 5; i++) {
+        let userNumEntered = parseInt(prompt(`Inserisci il numero: ${i}`))
+        userNum.push(userNumEntered);
+    }
+    console.log(userNum);
+    return userNum;
+}
 
 // Genera 5 numeri casuali univoci
 function genRandNum(rangeNum) {
