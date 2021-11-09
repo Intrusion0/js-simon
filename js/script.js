@@ -25,9 +25,10 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 */
 
-const contResult = document.getElementById('result');
+const contResult = document.querySelector('#result');
+const contNumber = document.querySelector('#number');
 
-contResult.innerHTML += genRandNum(100);
+contNumber.innerHTML += genRandNum(100);
 setTimeout(genPrompt, 3000);
 
 console.log('Numeri random univoci: ', randomNum);
@@ -46,7 +47,10 @@ function genPrompt() {
         userNum.push(userNumEntered);
         if ((randomNum.includes(userNumEntered)) && (resultNum.indexOf(userNumEntered) === -1)) { // Condizione doppia per far si che il nuovo array sia univoco e non abbia doppioni, per evitare che se l'utente inserisce 2 o più numeri uguali, in html e nel nuovo array ne appaia solo 1 e non venga ripetuto. 
             resultNum.push(userNumEntered);
-            contResult.innerHTML = 'Hai indovinato ' + resultNum.length + ' numeri, e sono: ' + resultNum;
+            genText(`Hai indovinato ${resultNum.length} numeri`, resultNum);
+        }
+        if (resultNum.length === 0) {
+            genText('Non hai indovinato nessun numero!', resultNum);
         }
     }
     console.log("Numeri inseriti dall'utente: ", userNum);
@@ -69,4 +73,14 @@ function genRandNum(rangeNum) {
         i++
     }
     return randomNum;
+}
+
+// Genera il contenuto in pagina
+function genText(text, num) {
+    contResult.innerHTML = `<h3 class="text">
+        ${text}
+    </h3>
+    <div id="number">
+        ${num}
+    </div>`;
 }
