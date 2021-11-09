@@ -1,0 +1,13 @@
+/* General rules */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#result {
+    /* debug */
+    background-color: red;
+    width: 100%;
+    height: 500px;
+}
