@@ -28,7 +28,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 const contResult = document.querySelector('#result');
 const contNumber = document.querySelector('#number');
 
-contNumber.innerHTML += genRandNum(100);
+genRandNum(100);
 setTimeout(genPrompt, 3000);
 
 console.log('Numeri random univoci: ', randomNum);
@@ -62,9 +62,8 @@ function genPrompt() {
 }
 
 // Genera 5 numeri casuali univoci
-function genRandNum(rangeNum) {
+async function genRandNum(rangeNum) {
 
-    let i = 0;
     randomNum = [];
 
     while (randomNum.length < 5) {
@@ -72,9 +71,15 @@ function genRandNum(rangeNum) {
 
         if (randomNum.indexOf(generateNum) === -1) {
             randomNum.push(generateNum);
+            contNumber.innerHTML += generateNum;
+            if (randomNum.length < 5) {
+                contNumber.innerHTML += ', ';
+            }
         }
-        i++
+
+        await new Promise(r => setTimeout(r, 500));
     }
+
     return randomNum;
 }
 
