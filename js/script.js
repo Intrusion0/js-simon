@@ -52,6 +52,9 @@ function genPrompt() {
         if (resultNum.length === 0) {
             genText('Non hai indovinato nessun numero!', resultNum);
         }
+        if (resultNum.length === 5) {
+            genText('Hai indovinato tutti i numeri, complimenti', resultNum);
+        }
     }
     console.log("Numeri inseriti dall'utente: ", userNum);
     console.log("Numeri indovinati: ", resultNum);
@@ -77,9 +80,9 @@ function genRandNum(rangeNum) {
 
 // Genera il contenuto in pagina
 function genText(text, num) {
-    contResult.innerHTML = `<h3 class="text">
+    contResult.innerHTML = `<h2 class="text">
         ${text}
-    </h3>
+    </h2>
     <div id="number">
         ${num}
     </div>`;
