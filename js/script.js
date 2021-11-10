@@ -49,11 +49,16 @@ function genPrompt() {
             resultNum.push(userNumEntered);
             genText(`Hai indovinato ${resultNum.length} numeri`, resultNum);
         }
-        if (resultNum.length === 0) {
-            genText('Non hai indovinato nessun numero!', resultNum);
-        }
-        if (resultNum.length === 5) {
-            genText('Hai indovinato tutti i numeri, complimenti', resultNum);
+        switch (resultNum.length) {
+            case 0:
+                genText('Non hai indovinato nessun numero!', resultNum);
+            break;
+            case 1:
+                genText(`Hai indovinato ${resultNum.length} numero!`, resultNum);
+            break;
+            case 5:
+                genText('Hai indovinato tutti i numeri, complimenti', resultNum);
+            break;  
         }
     }
     console.log("Numeri inseriti dall'utente: ", userNum);
